@@ -4,7 +4,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-import { Todos } from './features/todos/todos'
+import { TodosList } from './features/todos/TodosList'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,7 +22,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <h2>Todo list: </h2>
-        <Todos />
+        <TodosList />
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more

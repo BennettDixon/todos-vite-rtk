@@ -31,6 +31,14 @@ const todosSlice = createSlice({
             completed: false
         }
         state.todos[newTodo.id] = newTodo
+    },
+    // similarly we can mutate objects directly here as well
+    todoToggled: (state, action: PayloadAction<string>) => {
+        Object.values(state.todos).forEach(todo => {
+            if (todo.id === action.payload) {
+                todo.completed = !todo.completed
+            }
+        })
     }
   }
 })

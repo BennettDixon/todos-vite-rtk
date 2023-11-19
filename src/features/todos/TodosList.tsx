@@ -1,8 +1,8 @@
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { TodoComponent } from "./todo";
+import { TodoComponent } from "./TodoComponent";
 import { todoAdded } from "./todosSlice";
 
-export function Todos(props) {
+export const TodosList = (props) => {
     const todos = useAppSelector(state => state.todos.todos)
     const dispatch = useAppDispatch()
     return (
