@@ -1,4 +1,5 @@
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { TodoComponent } from "./todo";
 import { todoAdded } from "./todosSlice";
 
 export function Todos(props) {
@@ -7,7 +8,7 @@ export function Todos(props) {
     return (
         <div>
             {Object.values(todos).map((v) => {
-                return <p key={`todo-${v.id}`}>{v.text}</p>
+                return <TodoComponent key={`todo-${v.id}`} todo={v} />
             })}
             <button
                 onClick={() => dispatch(todoAdded("test"))}
