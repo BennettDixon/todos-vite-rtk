@@ -4,9 +4,9 @@ import { TodoComponent } from "./TodoComponent";
 import { todoAdded } from "./todosSlice";
 
 export const TodosList = (props) => {
-    const todos = useAppSelector(state => state.todos.todos)
-    const filter = useAppSelector(state => state.filter.filter)
-    const filteredTodos = filterTodos(Object.values(todos), filter)
+    const todos = useAppSelector(state => state.todos)
+    const filter = useAppSelector(state => state.filter)
+    const filteredTodos = filterTodos(todos, filter)
     const dispatch = useAppDispatch()
 
     function handleSubmit(e) {
@@ -16,8 +16,12 @@ export const TodosList = (props) => {
         // Read the form data
         const form = e.target;
         const formData = new FormData(form);
-        dispatch(todoAdded(formData.get("todoInput")?.valueOf()))
-      }
+        const newTodo = formData.get("todoInput")?.valueOf() || ""
+        if (newTodo.length > 0) {
+            dispatch(todoAdded(newTodo))
+        }
+        form.reset()
+    }
 
     return (
         <div>
@@ -34,6 +38,7 @@ export const TodosList = (props) => {
                     Add todo
                 </button>
             </form>
+
             <div>
                 <a 
                     href="#"

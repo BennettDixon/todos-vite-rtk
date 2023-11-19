@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Todo } from "../todos/todosSlice"
+import { Todo, TodoState } from "../todos/todosSlice"
 
 export enum Filter {
     All = 'ALL',
@@ -7,9 +7,10 @@ export enum Filter {
     Active = 'ACTIVE'
 }
 
-export const filterTodos = (todos: Todo[], filter: Filter): Todo[] => {
+export const filterTodos = (todoState: TodoState, filter: FilterState): Todo[] => {
+    const todos = Object.values(todoState.todos)
     return todos.filter(t => {
-        switch (filter) {
+        switch (filter.filter) {
             case Filter.All:
                 return t
             case Filter.Completed:

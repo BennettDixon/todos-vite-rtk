@@ -1,4 +1,4 @@
-import { Todo } from "../todos/todosSlice";
+import { Todo, TodoState } from "../todos/todosSlice";
 import { Filter, filterTodos } from "./filterSlice";
 
 test('filter todos simple filter logic', () => {
@@ -14,20 +14,27 @@ test('filter todos simple filter logic', () => {
     }
     const todos: Todo[] = [learnViteTodo, learnRtkTodo]
 
-    const filteredAll: Todo[] = filterTodos(todos, Filter.All)
+    const todoState: TodoState = {
+        todos
+    }
+    
+    const filteredAll: Todo[] = filterTodos(todoState, { filter: Filter.All })
     expect(filteredAll.length).toEqual(2)
 
-    const filteredComplete: Todo[] = filterTodos(todos, Filter.Completed)
+    const filteredComplete: Todo[] = filterTodos(todoState, { filter: Filter.Completed })
     expect(filteredComplete.length).toEqual(1)
     expect(filteredComplete[0]).toEqual(learnViteTodo)
 
-    const filteredActive: Todo[] = filterTodos(todos, Filter.Active)
+    const filteredActive: Todo[] = filterTodos(todoState, { filter: Filter.Active })
     expect(filteredActive.length).toEqual(1)
     expect(filteredActive[0]).toEqual(learnRtkTodo)
 })
 
 test('filter todos empty list', () => {
     const todos: Todo[] = []
-    const filtered = filterTodos(todos, Filter.Completed)
+    const todoState: TodoState = {
+        todos
+    }
+    const filtered = filterTodos(todoState, { filter: Filter.Completed })
     expect(filtered.length).toEqual(0)
 })
