@@ -8,16 +8,32 @@ export const TodosList = (props) => {
     const filter = useAppSelector(state => state.filter.filter)
     const filteredTodos = filterTodos(Object.values(todos), filter)
     const dispatch = useAppDispatch()
+
+    function handleSubmit(e) {
+        // Prevent the browser from reloading the page
+        e.preventDefault();
+    
+        // Read the form data
+        const form = e.target;
+        const formData = new FormData(form);
+        dispatch(todoAdded(formData.get("todoInput")?.valueOf()))
+      }
+
     return (
         <div>
             {filteredTodos.map((v) => {
                 return <TodoComponent key={`todo-${v.id}`} todo={v} />
             })}
-            <button
-                onClick={() => dispatch(todoAdded("test"))}
-            >
-                Add test todo
-            </button>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Todo input: <input name="todoInput" />
+                </label>
+                <button
+                    type="submit"
+                >
+                    Add todo
+                </button>
+            </form>
             <div>
                 <a 
                     href="#"
