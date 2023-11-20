@@ -12,6 +12,13 @@ export const FilterContainer = styled.div`
 `
 
 export const Filter = styled.button`
-    ${({$isActive, theme}) => $isActive ? `background: ${theme.primaryActive}; color: ${theme.neutral10};` : ''}
+    ${({$isActive, theme}) => $isActive ? `background: ${theme.primaryActive};` : ''}
     margin: 0 10px;
+    &:hover {
+        transition: opacity 0.25s;
+        ${({$isActive, theme}) => $isActive ? `
+            background: ${theme.primaryActive};
+            opacity: 0.7;` : ''
+        }
+    }
 `
