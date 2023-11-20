@@ -1,14 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import todosReducer from '../features/todos/todosSlice'
-
 import filterReducer from '../features/filter/filterSlice'
+import themeReducer from '../features/themes/themeSlice'
 
 export const store = configureStore({
     reducer: {
       // Add any other reducers
       todos: todosReducer,
-      filter: filterReducer
+      filter: filterReducer,
+      theme: themeReducer
     }
 })
 

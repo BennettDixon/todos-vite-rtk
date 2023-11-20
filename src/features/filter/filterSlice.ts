@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Todo, TodoState } from "../todos/todosSlice"
+import { RootState } from "../../app/store"
 
 export enum Filter {
     All = 'ALL',
@@ -8,6 +9,7 @@ export enum Filter {
 }
 
 export const filterTodos = (todoState: TodoState, filter: FilterState): Todo[] => {
+    console.log("filtering todos")
     const todos = Object.values(todoState.todos)
     return todos.filter(t => {
         switch (filter.filter) {
@@ -28,6 +30,11 @@ export const filterTodos = (todoState: TodoState, filter: FilterState): Todo[] =
         }
     })
 }
+
+export const memoizedFilterTodos = createSelector(
+    (state: RootState) => ({ todos: state.todos, filter: state.filter }),
+    (selected) => filterTodos(selected.todos, selected.filter)
+)
 
 // make an object incase we want to make more complex filtering in the future
 export interface FilterState {
