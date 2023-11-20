@@ -7,5 +7,6 @@ export const lightTheme: ITheme = {
     background: '#FFF',
     primary: '#007ea7',
     primaryActive: '#003459',
-    primaryHighlight: '#00a8e8'
+    primaryHighlight: '#00a8e8',
+    neutral10: '#FFF'
 }

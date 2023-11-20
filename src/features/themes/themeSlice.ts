@@ -10,14 +10,17 @@ export enum StyleTheme {
     dark = 'DARK'
 }
 
-interface StyleThemeState {
+export interface StyleThemeState {
     theme: StyleTheme
 }
 
 let startingTheme: StyleTheme = StyleTheme.light
 // start in dark mode instead
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    startingTheme = StyleTheme.dark
+// check for window (ignore in jest)
+if (typeof window !== 'undefined') {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        startingTheme = StyleTheme.dark
+    }
 }
 
 const initialState: StyleThemeState = {

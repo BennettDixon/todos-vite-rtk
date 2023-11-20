@@ -11,6 +11,7 @@ export const FilterContainer = styled.div`
     margin: 10px 0;
 `
 
-export const Filter = styled.a`
+export const Filter = styled.button`
+    ${({$isActive, theme}) => $isActive ? `background: ${theme.primaryActive}; color: ${theme.neutral10};` : ''}
     margin: 0 10px;
 `

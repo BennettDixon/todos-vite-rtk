@@ -1,12 +1,13 @@
-import { useSelector } from "react-redux";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
-import { Filter, filterChanged, memoizedFilterTodos } from "../../filter/filterSlice";
+import { RootState } from "../../../app/store";
+import { FilterEnum, filterChanged, memoizedFilterTodos } from "../../filter/filterSlice";
 import { TodoComponent } from "../TodoComponent/TodoComponent";
 import { Todo, todoAdded } from "../todosSlice";
 import * as S from './styles'
 
 export const TodosList = (props) => {
-    const filteredTodos: Todo[] = useSelector(memoizedFilterTodos)
+    const filteredTodos: Todo[] = useAppSelector(memoizedFilterTodos)
+    const activeFilter: FilterEnum = useAppSelector((state: RootState) => state.filter.filter)
     const dispatch = useAppDispatch()
 
     function handleSubmit(e) {
@@ -22,27 +23,27 @@ export const TodosList = (props) => {
         }
         form.reset()
     }
-
+    console.log("activeFilter: ", activeFilter)
     return (
         <S.PrimaryContainer>
             <h2>Todo list: </h2>
 
             <S.FilterContainer>
                 <S.Filter 
-                    href="#"
-                    onClick={() => dispatch(filterChanged(Filter.All))}
+                    onClick={() => dispatch(filterChanged(FilterEnum.All))}
+                    $isActive={activeFilter === FilterEnum.All}
                 >
                     All
                 </S.Filter>
                 <S.Filter 
-                    href="#"
-                    onClick={() => dispatch(filterChanged(Filter.Completed))}
+                    onClick={() => dispatch(filterChanged(FilterEnum.Completed))}
+                    $isActive={activeFilter === FilterEnum.Completed}
                 >
                     Completed
                 </S.Filter>
                 <S.Filter 
-                    href="#"
-                    onClick={() => dispatch(filterChanged(Filter.Active))}
+                    onClick={() => dispatch(filterChanged(FilterEnum.Active))}
+                    $isActive={activeFilter === FilterEnum.Active}
                 >
                     Active
                 </S.Filter>
@@ -51,8 +52,6 @@ export const TodosList = (props) => {
             {filteredTodos.map((v) => {
                 return <TodoComponent key={`todo-${v.id}`} todo={v} />
             })}
-
-
 
             <form onSubmit={handleSubmit}>
                 <label>

@@ -1,5 +1,5 @@
 import { Todo, TodoState } from "../todos/todosSlice";
-import { Filter, filterTodos } from "./filterSlice";
+import { FilterEnum, filterTodos } from "./filterSlice";
 
 test('filter todos simple filter logic', () => {
     const learnViteTodo: Todo = {
@@ -18,14 +18,14 @@ test('filter todos simple filter logic', () => {
         todos
     }
     
-    const filteredAll: Todo[] = filterTodos(todoState, { filter: Filter.All })
+    const filteredAll: Todo[] = filterTodos(todoState, { filter: FilterEnum.All })
     expect(filteredAll.length).toEqual(2)
 
-    const filteredComplete: Todo[] = filterTodos(todoState, { filter: Filter.Completed })
+    const filteredComplete: Todo[] = filterTodos(todoState, { filter: FilterEnum.Completed })
     expect(filteredComplete.length).toEqual(1)
     expect(filteredComplete[0]).toEqual(learnViteTodo)
 
-    const filteredActive: Todo[] = filterTodos(todoState, { filter: Filter.Active })
+    const filteredActive: Todo[] = filterTodos(todoState, { filter: FilterEnum.Active })
     expect(filteredActive.length).toEqual(1)
     expect(filteredActive[0]).toEqual(learnRtkTodo)
 })
@@ -35,6 +35,6 @@ test('filter todos empty list', () => {
     const todoState: TodoState = {
         todos
     }
-    const filtered = filterTodos(todoState, { filter: Filter.Completed })
+    const filtered = filterTodos(todoState, { filter: FilterEnum.Completed })
     expect(filtered.length).toEqual(0)
 })
