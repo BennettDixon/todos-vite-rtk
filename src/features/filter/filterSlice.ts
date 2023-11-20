@@ -9,7 +9,6 @@ export enum FilterEnum {
 }
 
 export const filterTodos = (todoState: TodoState, filter: FilterState): Todo[] => {
-    console.log("filtering todos")
     const todos = Object.values(todoState.todos)
     return todos.filter(t => {
         switch (filter.filter) {

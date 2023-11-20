@@ -58,14 +58,17 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    /* background-color: #1a1a1a; */
+    background: ${props => props.theme.primary};
+    color: ${props => props.theme.neutral10};
     cursor: pointer;
     transition: border-color 0.25s;
+    transition: background 0.25s;
   }
 
   button:hover {
-    border-color: #646cff;
+    background: ${props => props.theme.primaryHighlight};
   }
+
   button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;

@@ -23,7 +23,6 @@ export const TodosList = (props) => {
         }
         form.reset()
     }
-    console.log("activeFilter: ", activeFilter)
     return (
         <S.PrimaryContainer>
             <h2>Todo list: </h2>
