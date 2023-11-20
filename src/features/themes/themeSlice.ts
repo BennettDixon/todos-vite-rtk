@@ -14,8 +14,14 @@ interface StyleThemeState {
     theme: StyleTheme
 }
 
+let startingTheme: StyleTheme = StyleTheme.light
+// start in dark mode instead
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    startingTheme = StyleTheme.dark
+}
+
 const initialState: StyleThemeState = {
-    theme: StyleTheme.light
+    theme: startingTheme
 }
 
 export const getActiveTheme = (theme: StyleTheme): ITheme  => {

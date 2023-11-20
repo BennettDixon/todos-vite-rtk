@@ -2,10 +2,10 @@ import { useSelector } from "react-redux";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { Filter, filterChanged, memoizedFilterTodos } from "../filter/filterSlice";
 import { TodoComponent } from "./TodoComponent/TodoComponent";
-import { todoAdded } from "./todosSlice";
+import { Todo, todoAdded } from "./todosSlice";
 
 export const TodosList = (props) => {
-    const filteredTodos = useSelector(memoizedFilterTodos)
+    const filteredTodos: Todo[] = useSelector(memoizedFilterTodos)
     const dispatch = useAppDispatch()
 
     function handleSubmit(e) {
