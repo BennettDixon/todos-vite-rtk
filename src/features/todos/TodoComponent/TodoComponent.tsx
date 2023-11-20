@@ -11,7 +11,7 @@ export const TodoComponent = (props: TodoProps) => {
     const dispatch = useAppDispatch()
     return (
         <S.StyledTodo onClick={() => dispatch(todoToggled(props.todo.id))}>
-            {props.todo.text}, completed: {props.todo.completed.toString()}
+            {props.todo.text}, completed; {props.todo.completed.toString()}
         </S.StyledTodo>
     )
 }

@@ -14,14 +14,28 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  #root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
   
   a {
     font-weight: 500;
-    /* color: #646cff; */
+    color: ${props => props.theme.primary};
     text-decoration: inherit;
   }
+  
+  a:active, a:focus {
+    color: ${props => props.theme.primaryActive};
+  }
+
   a:hover {
-    /* color: #535bf2; */
+      color: ${props => props.theme.primaryHighlight};
+      text-decoration: underline;
+      transition: opacity 300ms ease;
   }
   
   body {

@@ -1,7 +1,7 @@
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 
-import { TodosList } from './features/todos/TodosList'
+import { TodosList } from './features/todos/TodoList/TodosList'
 import { ThemeProvider } from 'styled-components'
 import { useAppDispatch, useAppSelector } from './app/hooks'
 import { StyleTheme, getActiveThemeState, getMemoizedActiveTheme, updateTheme } from './features/themes/themeSlice'
@@ -21,14 +21,11 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <div className="card">
-          <button onClick={toggleTheme.bind(this)}
-          >
-            Toggle Light/Dark mode
-          </button>
-          <h2>Todo list: </h2>
-          <TodosList />
-        </div>
+        <button onClick={toggleTheme.bind(this)}
+        >
+          Toggle Light/Dark mode
+        </button>
+        <TodosList />
       </ThemeProvider>
     </>
   )

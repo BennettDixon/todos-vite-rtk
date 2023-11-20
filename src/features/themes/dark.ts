@@ -5,4 +5,7 @@ export const darkTheme: ITheme = {
     text: '#000000',
     toggleBorder: '#6B8096',
     background: '#999',
+    primary: '#003f88',
+    primaryActive: '#00296b',
+    primaryHighlight: '#00509d'
 }

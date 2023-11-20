@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { Filter, filterChanged, memoizedFilterTodos } from "../filter/filterSlice";
-import { TodoComponent } from "./TodoComponent/TodoComponent";
-import { Todo, todoAdded } from "./todosSlice";
+import { useAppSelector, useAppDispatch } from "../../../app/hooks";
+import { Filter, filterChanged, memoizedFilterTodos } from "../../filter/filterSlice";
+import { TodoComponent } from "../TodoComponent/TodoComponent";
+import { Todo, todoAdded } from "../todosSlice";
+import * as S from './styles'
 
 export const TodosList = (props) => {
     const filteredTodos: Todo[] = useSelector(memoizedFilterTodos)
@@ -23,10 +24,36 @@ export const TodosList = (props) => {
     }
 
     return (
-        <div>
+        <S.PrimaryContainer>
+            <h2>Todo list: </h2>
+
+            <S.FilterContainer>
+                <S.Filter 
+                    href="#"
+                    onClick={() => dispatch(filterChanged(Filter.All))}
+                >
+                    All
+                </S.Filter>
+                <S.Filter 
+                    href="#"
+                    onClick={() => dispatch(filterChanged(Filter.Completed))}
+                >
+                    Completed
+                </S.Filter>
+                <S.Filter 
+                    href="#"
+                    onClick={() => dispatch(filterChanged(Filter.Active))}
+                >
+                    Active
+                </S.Filter>
+            </S.FilterContainer>
+
             {filteredTodos.map((v) => {
                 return <TodoComponent key={`todo-${v.id}`} todo={v} />
             })}
+
+
+
             <form onSubmit={handleSubmit}>
                 <label>
                     Todo input: <input name="todoInput" />
@@ -37,27 +64,6 @@ export const TodosList = (props) => {
                     Add todo
                 </button>
             </form>
-
-            <div>
-                <a 
-                    href="#"
-                    onClick={() => dispatch(filterChanged(Filter.All))}
-                >
-                    All
-                </a>
-                <a 
-                    href="#"
-                    onClick={() => dispatch(filterChanged(Filter.Completed))}
-                >
-                    Completed
-                </a>
-                <a 
-                    href="#"
-                    onClick={() => dispatch(filterChanged(Filter.Active))}
-                >
-                    Active
-                </a>
-            </div>
-        </div>
+        </S.PrimaryContainer>
     )
 }
